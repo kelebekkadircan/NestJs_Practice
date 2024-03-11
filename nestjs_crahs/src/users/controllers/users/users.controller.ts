@@ -7,21 +7,31 @@ import {
   Body,
   Param,
   Query,
+  UsePipes,
+  ValidationPipe,
+  ParseIntPipe,
+  ParseBoolPipe,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { CreateUserDto } from 'src/users/dtos/CreateUserDto';
+import { ValidateCreateUserPipe } from 'src/users/pipes/validate-create-user/validate-create-user.pipe';
+import { UsersService } from 'src/users/services/users/users.service';
 
 @Controller('users')
 export class UsersController {
+  constructor(private userService: UsersService) {}
+
   @Get()
   getUsers() {
-    return [{ username: 'Kadircan', email: 'kelebekkadircan@gmail.com' }];
+    return this.userService.fetchUsers();
   }
 
   @Get('sortBy')
-  getUsersSortBy(@Query('sortBy') sortBy: string) {
-    console.log(sortBy);
-    return [{ username: 'Kadircan', email: 'kelebekkadircan@gmail.com' }];
+  getUsersSortBy(@Query('sortDesc', ParseBoolPipe) sortDesc: boolean) {
+    console.log(sortDesc);
+    return { sortDesc: sortDesc };
   }
 
   @Get('posts')
@@ -76,14 +86,20 @@ export class UsersController {
   }
 
   @Post('create')
-  createUser(@Body() userData: CreateUserDto) {
-    console.log(userData.email, userData.username);
-    return {};
+  @UsePipes(new ValidationPipe())
+  createUser(@Body(ValidateCreateUserPipe) userData: CreateUserDto) {
+    console.log(userData.email, userData.username, userData.age.toPrecision());
+    return this.userService.createUser(userData);
   }
 
-  @Get(':id/:postId')
-  getUsersById(@Param('id') id: string, @Param('postId') postId: string) {
-    console.log(id, postId);
-    return { id, postId };
+  @Get(':id')
+  getUsersById(@Param('id', ParseIntPipe) id: number) {
+    console.log(id);
+    const user = this.userService.fetchUserById(id);
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.BAD_REQUEST);
+    } else {
+      return user;
+    }
   }
 }
