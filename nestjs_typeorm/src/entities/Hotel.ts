@@ -1,4 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'hotels' })
 export class Hotel {
@@ -23,8 +28,8 @@ export class Hotel {
   @Column({ nullable: true })
   address: string;
 
-  // @Column()
-  // createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
   @Column()
   description: string;

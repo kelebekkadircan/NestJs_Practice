@@ -8,6 +8,7 @@ import { HotelsModule } from './hotels/hotels.module';
 import { Hotel } from './entities/Hotel';
 import { Profile } from './entities/Profile';
 import { Post } from './entities/Posts';
+import { Label } from './entities/Label';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { Post } from './entities/Posts';
       username: 'root',
       password: '123456',
       database: 'nestjs_mysql_tutorial',
-      entities: [User, Hotel, Profile, Post],
+      entities: [User, Hotel, Profile, Post, Label],
       synchronize: true,
     }),
     UsersModule,
