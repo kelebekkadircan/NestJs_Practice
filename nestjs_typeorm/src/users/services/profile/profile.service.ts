@@ -3,13 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserProfileDto } from 'src/users/dtos/profile/CreateUserProfile.dto';
 import { UpdateUserProfileDto } from 'src/users/dtos/profile/UpdateUserProfile.dto';
 import { Profile } from 'src/users/entities/Profile';
-import { User } from 'src/users/entities/User';
 import { Repository } from 'typeorm';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class ProfileService {
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,
+    private readonly userService: UsersService,
     @InjectRepository(Profile) private profileRepository: Repository<Profile>,
   ) {}
 
@@ -17,15 +17,16 @@ export class ProfileService {
     id: number,
     createUserProfileDto: CreateUserProfileDto,
   ) {
-    const user = await this.userRepository.findOneBy({ id });
+    const user = await this.userService.findUsersById(id);
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    const newProfile = this.profileRepository.create(createUserProfileDto);
-    const savedProfile = await this.profileRepository.save(newProfile);
-    user.profile = savedProfile;
-    return this.userRepository.save(user);
+    const newProfile = this.profileRepository.create({
+      ...createUserProfileDto,
+      user,
+    });
+    return await this.profileRepository.save(newProfile);
   }
 
   async getProfiles() {

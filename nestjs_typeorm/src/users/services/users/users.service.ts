@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Label } from 'src/users/entities/Label';
 
 import { User } from 'src/users/entities/User';
 import { Repository } from 'typeorm';
@@ -11,8 +10,6 @@ import { CreateUserDto } from 'src/users/dtos/users/CreateUser.dto';
 export class UsersService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
-
-    @InjectRepository(Label) private labelRepository: Repository<Label>,
   ) {}
 
   findUsers() {
@@ -21,8 +18,8 @@ export class UsersService {
     });
   }
 
-  async findlabels() {
-    return await this.labelRepository.find();
+  async findUsersById(id: number) {
+    return await this.userRepository.findOneBy({ id });
   }
 
   createUser(userDetails: CreateUserDto) {

@@ -3,14 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreatePostLabelDto } from 'src/users/dtos/label/CreatePostLabel.dto';
 import { UpdatePostLabelDto } from 'src/users/dtos/label/UpdatePostLabel.dto';
 import { Label } from 'src/users/entities/Label';
-import { Post } from 'src/users/entities/Posts';
 import { Repository } from 'typeorm';
+import { PostsService } from '../posts/posts.service';
 
 @Injectable()
 export class LabelService {
   constructor(
     @InjectRepository(Label) private labelRepository: Repository<Label>,
-    @InjectRepository(Post) private postRepository: Repository<Post>,
+    private readonly postService: PostsService,
   ) {}
 
   async findlabels() {
@@ -18,10 +18,7 @@ export class LabelService {
   }
 
   async createPostLabel(id: number, createPostLabelDto: CreatePostLabelDto) {
-    const post = await this.postRepository.findOne({
-      where: { id: id },
-      relations: ['labels'],
-    });
+    const post = await this.postService.findPostsById(id);
 
     const newLabel = this.labelRepository.create({
       ...createPostLabelDto,
