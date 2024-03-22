@@ -10,8 +10,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { HotelsService } from 'src/hotels/services/hotels/hotels.service';
-import { CreateHotelDto } from 'src/users/dtos/hotels/CreateHotels';
-import { UpdatedHotelDto } from 'src/users/dtos/hotels/UpdatedHotelDto';
+import { CreateHotelDto } from 'src/hotels/dto/CreateHotels';
+import { UpdatedHotelDto } from 'src/hotels/dto/UpdatedHotelDto';
 
 @Controller('hotels')
 export class HotelsController {

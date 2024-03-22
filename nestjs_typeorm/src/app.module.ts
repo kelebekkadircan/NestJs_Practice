@@ -2,13 +2,12 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/User';
+import { User } from './users/entities/User';
 import { UsersModule } from './users/users.module';
-import { HotelsModule } from './hotels/hotels.module';
-import { Hotel } from './entities/Hotel';
-import { Profile } from './entities/Profile';
-import { Post } from './entities/Posts';
-import { Label } from './entities/Label';
+import { Hotel } from './hotels/entities/Hotel';
+import { Profile } from './users/entities/Profile';
+import { Post } from './users/entities/Posts';
+import { Label } from './users/entities/Label';
 
 @Module({
   imports: [
@@ -23,7 +22,7 @@ import { Label } from './entities/Label';
       synchronize: true,
     }),
     UsersModule,
-    HotelsModule,
+    // HotelsModule, // SİLİNDİ
   ],
   controllers: [AppController],
   providers: [AppService],

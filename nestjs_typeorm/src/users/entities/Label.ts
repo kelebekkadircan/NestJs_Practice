@@ -8,6 +8,6 @@ export class Label {
   @Column()
   name: string;
 
-  @ManyToMany(() => Post, (post) => post.labels)
+  @ManyToMany(() => Post, (post) => post.labels, { eager: true })
   posts: Post[];
 }

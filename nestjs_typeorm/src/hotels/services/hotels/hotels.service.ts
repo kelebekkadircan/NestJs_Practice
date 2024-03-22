@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Hotel } from 'src/entities/Hotel';
-import { CreateHotelDto } from 'src/users/dtos/hotels/CreateHotels';
-import { UpdatedHotelDto } from 'src/users/dtos/hotels/UpdatedHotelDto';
+import { Hotel } from 'src/hotels/entities/Hotel';
+import { CreateHotelDto } from 'src/hotels/dto/CreateHotels';
+import { UpdatedHotelDto } from 'src/hotels/dto/UpdatedHotelDto';
 import { Repository } from 'typeorm';
 
 @Injectable()
