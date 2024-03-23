@@ -21,6 +21,7 @@ export class ProfileController {
     return await this.profileService.getProfiles();
   }
 
+  // emircan deneme
   @Post(':id')
   async createUserProfile(
     @Param('id', ParseIntPipe) id: number, // dto üzerinden kontrolün nasıl yapılır bak
