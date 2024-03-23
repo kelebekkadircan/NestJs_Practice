@@ -32,6 +32,7 @@ export class ProfileController {
     );
   }
 
+  //master branch
   @Put(':id')
   async updateUserProfile(
     @Param('id', ParseIntPipe) id: number, // dto üzerinden kontrolün nasıl yapılır bak
