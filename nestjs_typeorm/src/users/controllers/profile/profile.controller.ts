@@ -17,7 +17,7 @@ export class ProfileController {
   constructor(private profileService: ProfileService) {}
 
   @Get()
-  async getProfiles(asdasd: any) {
+  async getProfiles(asvfms: string) {
     return await this.profileService.getProfiles();
   }
 
@@ -33,6 +33,7 @@ export class ProfileController {
     );
   }
 
+  //master branch
   @Put(':id')
   async updateUserProfile(
     @Param('id', ParseIntPipe) id: number, // dto üzerinden kontrolün nasıl yapılır bak
