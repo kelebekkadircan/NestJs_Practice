@@ -41,4 +41,9 @@ export class ProfileController {
   ) {
     return await this.profileService.updateUserProfile(id, updateProfileDto);
   }
+
+  @Get()
+  async boscontroller() {
+    return 'bos controller';
+  }
 }
