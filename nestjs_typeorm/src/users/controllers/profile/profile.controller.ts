@@ -11,6 +11,7 @@ import { CreateUserProfileDto } from 'src/users/dtos/profile/CreateUserProfile.d
 import { UpdateUserProfileDto } from 'src/users/dtos/profile/UpdateUserProfile.dto';
 import { ProfileService } from 'src/users/services/profile/profile.service';
 
+//branch deneme
 @Controller('profiles')
 export class ProfileController {
   constructor(private profileService: ProfileService) {}
