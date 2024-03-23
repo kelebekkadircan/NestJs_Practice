@@ -17,7 +17,7 @@ export class ProfileController {
   constructor(private profileService: ProfileService) {}
 
   @Get()
-  async getProfiles(asvfms: string) {
+  async getProfiles() {
     return await this.profileService.getProfiles();
   }
 
