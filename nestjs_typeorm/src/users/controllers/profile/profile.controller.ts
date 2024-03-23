@@ -44,6 +44,7 @@ export class ProfileController {
 
   @Get()
   async boscontroller() {
+    console.log('bos controller');
     return 'bos controller';
   }
 }
