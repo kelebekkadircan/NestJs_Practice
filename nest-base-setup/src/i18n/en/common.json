@@ -1,0 +1,6 @@
+{
+    "epNotFound": "This EP is not exist",
+    "messageNotFound": "This message is not found",
+    "user.alreadyExist": "This user is already exist",
+    "throttler.tooManyRequests": "Too many requests, please try again later"
+}

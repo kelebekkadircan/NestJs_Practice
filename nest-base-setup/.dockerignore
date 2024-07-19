@@ -1,0 +1,18 @@
+#VCS
+.git
+.gitignore
+
+#Build Dependices
+dist
+node_modules
+coverage
+
+#Not Required For Prod
+.dockerignore
+Dockerfile
+README.md
+*.log
+
+#Sensitive Information
+.env
+.env.example

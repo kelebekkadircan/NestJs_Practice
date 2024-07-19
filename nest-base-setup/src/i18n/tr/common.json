@@ -1,0 +1,6 @@
+{
+    "epNotFound": "This EP is not exist",
+    "messageNotFound": "This message is not found",
+    "user.alreadyExist": "Bu kullanıcı zaten var",
+    "throttler.tooManyRequests": "Çok fazla istek gönderdiniz. Lütfen daha sonra tekrar deneyin!"
+}
