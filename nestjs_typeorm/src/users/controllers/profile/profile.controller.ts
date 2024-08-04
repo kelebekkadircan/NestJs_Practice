@@ -17,7 +17,7 @@ export class ProfileController {
   constructor(private profileService: ProfileService) {}
 
   @Get()
-  async getProfiles(asvfms: string) {
+  async getProfiles() {
     return await this.profileService.getProfiles();
   }
 
@@ -40,5 +40,11 @@ export class ProfileController {
     @Body() updateProfileDto: UpdateUserProfileDto,
   ) {
     return await this.profileService.updateUserProfile(id, updateProfileDto);
+  }
+
+  @Get()
+  async boscontroller() {
+    console.log('bos controller');
+    return 'bos controller';
   }
 }
